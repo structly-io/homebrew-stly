@@ -1,6 +1,6 @@
 # Homebrew tap for stly
 
-Install the [stly CLI](https://github.com/structly-io/stly) on Apple Silicon or Intel Macs:
+Install the [stly CLI](https://github.com/structly-io/stly) on Apple Silicon Macs (Intel Macs are not supported):
 
 ```sh
 brew tap structly-io/stly
