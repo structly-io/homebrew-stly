@@ -1,16 +1,14 @@
 cask "stly" do
-  arch arm: "arm64", intel: "amd64"
+  version "0.1.84"
+  sha256 "5f28aed6bf91e5b895a2a5da737b90c6b9ba711b10c383d5148a45f6e6856b8a"
 
-  version "0.1.83"
-  sha256 arm:   "256ef93d9b8eb87b9c14bb48da1fde2ab36dc28131f93d91e1b8fee62a23a3a9",
-         intel: "0de29684c8096eeabcf9a383557993549db7d8e37fe600e8f33a8f89666b87e7"
-
-  url "https://github.com/structly-io/stly/releases/download/stly-v#{version}/stly-darwin-#{arch}.tar.gz"
+  url "https://github.com/structly-io/stly/releases/download/stly-v#{version}/stly-darwin-arm64.tar.gz"
   name "stly"
   desc "Agentic CLI for the Structly catalog"
   homepage "https://github.com/structly-io/stly"
 
   depends_on :macos
+  depends_on arch: :arm64
 
-  binary "stly-darwin-#{arch}/stly"
+  binary "stly-darwin-arm64/stly"
 end
