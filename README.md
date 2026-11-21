@@ -16,20 +16,23 @@ brew update
 brew upgrade --cask stly
 ```
 
-## Switch an existing tap
+## Repair an existing tap
 
-If you previously registered `https://github.com/structly-io/stly.git` as the tap,
-register the dedicated tap repository once:
+The tap history was reset in November 2026. If `brew update` reports a conflict
+or `stly` becomes unreadable, align your local tap with the new history once.
+This also switches a tap that still points to `https://github.com/structly-io/stly.git`:
 
 ```sh
-brew tap --custom-remote structly-io/stly https://github.com/structly-io/homebrew-stly.git
+TAP="$(brew --repo structly-io/stly)"
+git -C "$TAP" rebase --abort 2>/dev/null || true
+git -C "$TAP" remote set-url origin https://github.com/structly-io/homebrew-stly.git
+git -C "$TAP" fetch origin
+git -C "$TAP" checkout -f -B main origin/main
 brew update
-brew install --cask structly-io/stly/stly
 ```
 
-This changes the tap remote while preserving the installed stly binary. The Cask
-name remains `structly-io/stly/stly`. Do not use `brew untap --force` to migrate an
-installed Cask; Homebrew 7 may uninstall it.
+This keeps the installed stly binary. Do not use `brew untap --force` to repair
+the tap; Homebrew 7 may uninstall the installed Cask.
 
 This repository contains the Homebrew Cask. Binaries and releases remain in
 [structly-io/stly](https://github.com/structly-io/stly/releases).
